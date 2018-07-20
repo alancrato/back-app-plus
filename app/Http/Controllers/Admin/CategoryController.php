@@ -65,6 +65,31 @@ class CategoryController extends Controller
 
         $data = $form->getFieldValues();
 
+        $card_active = $request->file('card_active');
+        $card_inactive = $request->file('card_inactive');
+        $icon = $request->file('icon');
+
+        $ext = ['jpg', 'png', 'jpeg'];
+
+        if($card_active->isValid() and in_array($card_active->extension(), $ext)){
+            $nameFileActive = uniqid(date('YmdHis')).'.'.$card_active->getClientOriginalExtension();
+            $card_active->storeAs('uploads/cards/active/', $nameFileActive);
+        }
+
+        if($card_inactive->isValid() and in_array($card_inactive->extension(), $ext)){
+            $nameFileInactive = uniqid(date('YmdHis')).'.'.$card_inactive->getClientOriginalExtension();
+            $card_inactive->storeAs('uploads/cards/inactive/', $nameFileInactive);
+        }
+
+        if($icon->isValid() and in_array($icon->extension(), $ext)){
+            $nameFileIcon = uniqid(date('YmdHis')).'.'.$icon->getClientOriginalExtension();
+            $icon->storeAs('uploads/states/icons/', $nameFileIcon);
+        }
+
+        $data['card_active'] = url('/uploads/cards/active') .'/'. $nameFileActive;
+        $data['card_inactive'] = url('/uploads/cards/inactive') .'/'. $nameFileInactive;
+        $data['icon'] = url('/uploads/states/icons') .'/'. $nameFileIcon;
+
         $this->repository->create($data);
 
         $request->session()->flash('message', 'Categoria cadastrada com sucesso.');
@@ -123,6 +148,31 @@ class CategoryController extends Controller
         }
 
         $data = $request->all();
+
+        $card_active = $request->file('card_active');
+        $card_inactive = $request->file('card_inactive');
+        $icon = $request->file('icon');
+
+        $ext = ['jpg', 'png', 'jpeg'];
+
+        if($card_active->isValid() and in_array($card_active->extension(), $ext)){
+            $nameFileActive = uniqid(date('YmdHis')).'.'.$card_active->getClientOriginalExtension();
+            $card_active->storeAs('uploads/cards/active/', $nameFileActive);
+        }
+
+        if($card_inactive->isValid() and in_array($card_inactive->extension(), $ext)){
+            $nameFileInactive = uniqid(date('YmdHis')).'.'.$card_inactive->getClientOriginalExtension();
+            $card_inactive->storeAs('uploads/cards/inactive/', $nameFileInactive);
+        }
+
+        if($icon->isValid() and in_array($icon->extension(), $ext)){
+            $nameFileIcon = uniqid(date('YmdHis')).'.'.$icon->getClientOriginalExtension();
+            $icon->storeAs('uploads/states/icons/', $nameFileIcon);
+        }
+
+        $data['card_active'] = url('/uploads/cards/active') .'/'. $nameFileActive;
+        $data['card_inactive'] = url('/uploads/cards/inactive') .'/'. $nameFileInactive;
+        $data['icon'] = url('/uploads/states/icons') .'/'. $nameFileIcon;
 
         $this->repository->update($data,$id);
 

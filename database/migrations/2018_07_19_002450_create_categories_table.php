@@ -18,6 +18,13 @@ class CreateCategoriesTable extends Migration
 		Schema::create('categories', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('stream');
+            $table->string('card_active')->nullable();
+            $table->string('card_inactive')->nullable();
+            $table->string('status');
+            $table->string('page');
+            $table->string('icon')->nullable();
+            $table->string('frequency')->nullable();
             $table->timestamps();
 		});
 	}

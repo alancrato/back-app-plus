@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'cors'], function (){
-    Route::get('states', 'Api\StateController@index');
     Route::get('categories', 'Api\CategoryController@index');
+    Route::get('states', 'Api\StateController@states');
+    Route::get('state', 'Api\StateController@index');
 });

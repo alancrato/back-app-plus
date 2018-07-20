@@ -21,9 +21,14 @@ class StateController extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function states()
     {
         return $this->repository->with('categories')->all();
+    }
+
+    public function index()
+    {
+        return $this->repository->all();
     }
 
 }

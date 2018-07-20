@@ -26,7 +26,14 @@ $factory->define(\App\Models\User::class, function (Faker\Generator $faker) {
 $factory->define(\App\Models\Category::class, function (Faker\Generator $faker){
 
     return [
-      'name' => $faker->name
+      'name' => $faker->name,
+      'stream' => $faker->ipv4,
+      'card_active' => $faker->imageUrl(),
+      'card_inactive' => $faker->imageUrl(),
+      'status' => 'active',
+      'page' => 'AboutPage',
+      'frequency' => 0,
+      'icon' => $faker->imageUrl(),
     ];
 
 });
@@ -35,7 +42,8 @@ $factory->define(\App\Models\State::class, function (Faker\Generator $faker){
 
     return [
         'name' => $faker->name,
-        'category_id' => rand(1,9)
+        'category_id' => rand(1,9),
+        'status' => 'active',
     ];
 
 });

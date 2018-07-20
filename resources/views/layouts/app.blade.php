@@ -36,14 +36,20 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;<li>
+                        <li>
                             <a href="{{url('/home')}}">Home</a>
                         </li>
                         <li>
-                            <a href="{{url('/categories')}}">Categories</a>
+                            <a href="javascript:void(null)">Droplet</a>
                         </li>
                         <li>
-                            <a href="{{url('/states')}}">States and Cat</a>
+                            <a href="{{url('/states')}}">Estações(Cidades)</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/categories')}}">Estações</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/state')}}">Cidades</a>
                         </li>
                     </ul>
 

@@ -8,8 +8,8 @@
             </div>
         @endif
         <div class="row">
-            <h3>Listagem de Categorias</h3>
-            {!! Button::primary('Nova Categoria')->asLinkTo(route('categories.create')) !!}
+            <h3>Listagem de Estações</h3>
+            {!! Button::primary('Nova Estação')->asLinkTo(route('categories.create')) !!}
         </div>
         <div class="row">
             {!! Table::withContents($categories->items())

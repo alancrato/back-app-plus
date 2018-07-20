@@ -18,8 +18,9 @@ class CreateStatesTable extends Migration
 		Schema::create('states', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('status');
             $table->timestamps();
 		});
 	}

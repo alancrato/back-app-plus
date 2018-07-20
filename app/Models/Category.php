@@ -22,7 +22,14 @@ class Category extends Model implements Transformable, TableInterface
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
+        'stream',
+        'card_active',
+        'card_inactive',
+        'status',
+        'page',
+        'frequency',
+        'icon'
     ];
 
     /**
@@ -32,8 +39,16 @@ class Category extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Nome'];
+        return ['#', 'Nome', 'Frequência', 'Stream', 'Status', 'Ionic Page'];
     }
+
+    /**
+     *  'Card Active', 'Card Inactive',
+     *   case 'Card Active':
+     *   return $this->card_active;
+     *   case 'Card Inactive':
+     *   return $this->card_inactive;
+     * */
 
     /**
      * Get the value for a given header. Note that this will be the value
@@ -49,6 +64,14 @@ class Category extends Model implements Transformable, TableInterface
                 return $this->id;
             case 'Nome':
                 return $this->name;
+            case 'Frequência':
+                return $this->frequency;
+            case 'Stream':
+                return $this->stream;
+            case 'Status':
+                return $this->status;
+            case 'Ionic Page':
+                return $this->page;
         }
     }
 

@@ -2,41 +2,26 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">States and Categories</div>
-
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                       @foreach($categories as $cat)
-
-                           <strong>
-                               @php
-                                   $ctId = $cat->id;
-                                   echo $ct = $cat->name
-                               @endphp
-                           </strong>
-                           <br/>
-
-                           @foreach($state as $st)
-                               @if($st->categories->id == $ctId)
-                                   {{$st->name}}
-                                   <br/>
-                               @endif
-                           @endforeach
-                           <br/>
-
-                       @endforeach
-
-                    </div>
-                </div>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
             </div>
+        @endif
+        <div class="row">
+            <h3>Listagem de Cidades</h3>
+            {!! Button::primary('Nova Cidade')->asLinkTo(route('state.create')) !!}
+        </div>
+        <div class="row">
+            {!! Table::withContents($state->items())
+             ->callback('Ações', function ($field,$state){
+                    $linkEdit = route('state.edit',['state' => $state->id]);
+                    $linkShow = route('state.show',['state' => $state->id]);
+                    return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit).' | '.
+                           Button::link(Icon::create('remove'))->asLinkTo($linkShow);
+                })
+
+            !!}
+            {!! $state->links() !!}
         </div>
     </div>
 @endsection

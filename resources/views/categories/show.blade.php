@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Categoria {{$category->name}}</h3>
+            <h3>Estação {{$category->name}}</h3>
                 @php $iconEdit = Icon::create('pencil'); @endphp
                 {!! Button::primary($iconEdit)->asLinkTo(route('categories.edit', ['category' => $category->id])) !!}
                 @php $iconDestroy = Icon::create('remove'); @endphp
@@ -28,6 +28,22 @@
                     <tr>
                         <th scope="row">Nome</th>
                         <td>{{$category->name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Frequência</th>
+                        <td>{{$category->frequency}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Stream</th>
+                        <td>{{$category->stream}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{$category->status}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ionic Page</th>
+                        <td>{{$category->page}}</td>
                     </tr>
                 </thead>
             </table>

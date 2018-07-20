@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/categories', 'Admin\CategoryController');
-Route::resource('/states', 'Admin\StateController');
+Route::get('/states', 'Admin\StateController@states');
+Route::resource('/state', 'Admin\StateController');

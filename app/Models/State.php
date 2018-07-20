@@ -23,7 +23,8 @@ class State extends Model implements Transformable, TableInterface
      */
     protected $fillable = [
         'name',
-        'category_id'
+        'category_id',
+        'status'
     ];
 
     /**
@@ -33,7 +34,7 @@ class State extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        // TODO: Implement getTableHeaders() method.
+        return ['#', 'Nome', 'Estação', 'Status'];
     }
 
     /**
@@ -45,7 +46,16 @@ class State extends Model implements Transformable, TableInterface
      */
     public function getValueForHeader($header)
     {
-        // TODO: Implement getValueForHeader() method.
+        switch ($header){
+            case '#':
+                return $this->id;
+            case 'Nome':
+                return $this->name;
+            case 'Estação':
+                return $this->categories->name;
+            case 'Status':
+                return $this->status;
+        }
     }
 
     public function categories()

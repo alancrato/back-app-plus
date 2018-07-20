@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h3>Editar Categoria</h3>
+            <h3>Editar Estação</h3>
             @php
                 $icon = Icon::create('pencil');
             @endphp
