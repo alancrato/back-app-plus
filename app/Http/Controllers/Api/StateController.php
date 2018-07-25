@@ -23,7 +23,10 @@ class StateController extends Controller
 
     public function states()
     {
-        return $this->repository->with('categories')->all();
+        $states = $this->repository->with('categories')->findWhere([
+            'status' => 'active'
+        ]);
+        return $states;
     }
 
     public function index()

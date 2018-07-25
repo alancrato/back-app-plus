@@ -23,6 +23,9 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return $this->repository->all();
+        $categories = $this->repository->findWhere([
+           'status' => 'active'
+        ]);
+        return $categories;
     }
 }
