@@ -21,4 +21,5 @@ Route::group(['middleware' => 'cors'], function (){
     Route::get('categories', 'Api\CategoryController@index');
     Route::get('states', 'Api\StateController@states');
     Route::get('state', 'Api\StateController@index');
+    Route::get('promotions', 'Api\PromotionController@index');
 });

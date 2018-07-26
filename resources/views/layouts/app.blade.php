@@ -51,6 +51,9 @@
                         <li>
                             <a href="{{url('/state')}}">Cidades</a>
                         </li>
+                        <li>
+                            <a href="{{url('/promotions')}}">Programação</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

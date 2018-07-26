@@ -47,3 +47,13 @@ $factory->define(\App\Models\State::class, function (Faker\Generator $faker){
     ];
 
 });
+
+$factory->define(\App\Models\Promotion::class, function (Faker\Generator $faker){
+
+    return [
+        'name' => $faker->name,
+        'card' => $faker->imageUrl(),
+        'status' => 'active',
+    ];
+
+});

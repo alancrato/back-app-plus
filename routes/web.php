@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/categories', 'Admin\CategoryController');
 Route::get('/states', 'Admin\StateController@states');
 Route::resource('/state', 'Admin\StateController');
+Route::resource('/promotions', 'Admin\PromotionController');
