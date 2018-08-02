@@ -40,19 +40,7 @@
                             <a href="{{url('/home')}}">Home</a>
                         </li>
                         <li>
-                            <a href="javascript:void(null)">Droplet</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/states')}}">Estações(Cidades)</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/categories')}}">Estações</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/state')}}">Cidades</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/promotions')}}">Programação</a>
+                            <a href="javascript:void(null)">Promoções</a>
                         </li>
                     </ul>
 

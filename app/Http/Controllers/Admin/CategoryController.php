@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->repository->paginate();
-        return view('categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -39,10 +39,10 @@ class CategoryController extends Controller
     public function create()
     {
         $form = \FormBuilder::create(CategoryForm::class, [
-            'url' => route('categories.store'),
+            'url' => route('admin.categories.store'),
             'method' => 'POST'
         ]);
-        return view('categories.create', compact('form'));
+        return view('admin.categories.create', compact('form'));
     }
 
     /**
@@ -94,7 +94,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('message', 'Categoria cadastrada com sucesso.');
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show', compact('category'));
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
@@ -119,11 +119,11 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $form = \FormBuilder::create(CategoryForm::class, [
-            'url' => route('categories.update',['categories' => $category->id]),
+            'url' => route('admin.categories.update',['categories' => $category->id]),
             'method' => 'PUT',
             'model' => $category
         ]);
-        return view('categories.edit', compact('form'));
+        return view('admin.categories.edit', compact('form'));
     }
 
     /**
@@ -178,7 +178,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('message', 'Categoria atualizada com sucesso.');
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -194,7 +194,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('message', 'Categoria excluida com sucesso.');
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
 }

@@ -24,7 +24,6 @@ class PromotionController extends Controller
         $this->repository = $repository;
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +32,7 @@ class PromotionController extends Controller
     public function index()
     {
         $promotions = $this->repository->paginate();
-        return view('promotions.index', compact('promotions'));
+        return view('admin.promotions.index', compact('promotions'));
     }
 
     /**
@@ -44,10 +43,10 @@ class PromotionController extends Controller
     public function create()
     {
         $form = \FormBuilder::create(PromotionForm::class, [
-            'url' => route('promotions.store'),
+            'url' => route('admin.promotions.store'),
             'method' => 'POST'
         ]);
-        return view('promotions.create', compact('form'));
+        return view('admin.promotions.create', compact('form'));
     }
 
     /**
@@ -85,7 +84,7 @@ class PromotionController extends Controller
 
         $request->session()->flash('message', 'Programação cadastrada com sucesso.');
 
-        return redirect()->route('promotions.index');
+        return redirect()->route('admin.promotions.index');
     }
 
     /**
@@ -97,7 +96,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        return view('promotions.show', compact('promotion'));
+        return view('admin.promotions.show', compact('promotion'));
     }
 
     /**
@@ -110,11 +109,11 @@ class PromotionController extends Controller
     public function edit(Promotion $promotion)
     {
         $form = \FormBuilder::create(PromotionForm::class, [
-            'url' => route('promotions.update',['promotions' => $promotion->id]),
+            'url' => route('admin.promotions.update',['promotions' => $promotion->id]),
             'method' => 'PUT',
             'model' => $promotion
         ]);
-        return view('promotions.edit', compact('form'));
+        return view('admin.promotions.edit', compact('form'));
     }
 
     /**
@@ -155,7 +154,7 @@ class PromotionController extends Controller
 
         $request->session()->flash('message', 'Programação atualizada com sucesso.');
 
-        return redirect()->route('promotions.index');
+        return redirect()->route('admin.promotions.index');
     }
 
     /**
@@ -171,6 +170,6 @@ class PromotionController extends Controller
 
         $request->session()->flash('message', 'Programação excluida com sucesso.');
 
-        return redirect()->route('promotions.index');
+        return redirect()->route('admin.promotions.index');
     }
 }

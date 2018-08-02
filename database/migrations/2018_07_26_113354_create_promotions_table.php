@@ -19,7 +19,7 @@ class CreatePromotionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('card');
-            $table->boolean('status');
+            $table->string('status');
             $table->timestamps();
 		});
 	}

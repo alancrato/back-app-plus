@@ -7,7 +7,11 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-cors": "^0.11.0",
+        "caouecs/laravel-lang": "^3.0",
+        "codeedu/code_validator": "^0.0.2",
+        "dingo/api": "1.0.0-beta8",
         "doctrine/dbal": "~2.3",
+        "jrean/laravel-user-verification": "4.1.2",
         "kris/laravel-form-builder": "^1.15",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",

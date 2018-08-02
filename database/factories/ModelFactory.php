@@ -16,10 +16,16 @@ $factory->define(\App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => 'Admin',
-        'email' => 'admin@user.com',
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->state(\App\Models\User::class,'admin', function (){
+    return [
+      'role' => \App\Models\User::ROLE_CLIENT
     ];
 });
 

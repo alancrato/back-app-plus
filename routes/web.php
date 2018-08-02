@@ -11,15 +11,64 @@
 |
 */
 
+/**
+ * Routes Live Content
+ **/
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/categories', 'Admin\CategoryController');
-Route::get('/states', 'Admin\StateController@states');
-Route::resource('/state', 'Admin\StateController');
-Route::resource('/promotions', 'Admin\PromotionController');
+/**
+ * Routes Verified Emails
+ **/
+
+Route::get('email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
+Route::get('email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
+
+/**
+ * Routes Settings Users
+ **/
+
+Route::get('users/settings', 'Auth\UserSettingsController@edit')->name('user.edit');
+Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user.update');
+
+/**
+ * Routes Register Users
+ **/
+
+Auth::routes();
+
+/**
+ * Routes Dashboard admin
+ **/
+
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin\\'
+], function (){
+    Route::get('login', 'Auth\LoginController@ShowLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+
+        Route::group([
+           'middleware' => ['isVerified', 'can:admin']
+        ], function (){
+            Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+            Route::get('users/settings', 'Auth\UserSettingsController@edit')->name('user_settings.edit');
+            Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user_settings.update');
+            Route::resource('users', 'UsersController');
+
+            Route::get('dashboard', function (){
+                return view('admin.dashboard');
+            });
+
+            Route::resource('/categories', 'CategoryController');
+            Route::get('/states', 'StateController@states');
+            Route::resource('/state', 'StateController');
+            Route::resource('/promotions', 'PromotionController');
+        });
+
+});

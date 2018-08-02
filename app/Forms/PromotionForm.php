@@ -15,9 +15,8 @@ class PromotionForm extends Form
             ->add('card', 'file',[
                 'rules' => 'image'
             ])
-            ->add('status', 'checkbox', [
-                'value' => 1,
-                'checked' => true
+            ->add('status', 'text',[
+                'rules' => 'required'
             ]);
     }
 }

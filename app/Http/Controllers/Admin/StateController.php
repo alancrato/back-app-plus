@@ -35,22 +35,22 @@ class StateController extends Controller
     {
         $categories = $this->categoryRepository->all();
         $states = $this->repository->with('categories')->all();
-        return view('states.index', compact('states', 'categories'));
+        return view('admin.states.index', compact('states', 'categories'));
     }
 
     public function index()
     {
         $state = $this->repository->paginate();
-        return view('state.index', compact('state'));
+        return view('admin.state.index', compact('state'));
     }
 
     public function create()
     {
         $form = \FormBuilder::create(StateForm::class, [
-            'url' => route('state.store'),
+            'url' => route('admin.state.store'),
             'method' => 'POST'
         ]);
-        return view('state.create', compact('form'));
+        return view('admin.state.create', compact('form'));
     }
 
     public function store(Request $request)
@@ -71,22 +71,22 @@ class StateController extends Controller
 
         $request->session()->flash('message', 'Cidade cadastrada com sucesso.');
 
-        return redirect()->route('state.index');
+        return redirect()->route('admin.state.index');
     }
 
     public function show(State $state)
     {
-        return view('state.show', compact('state'));
+        return view('admin.state.show', compact('state'));
     }
 
     public function edit(State $state)
     {
         $form = \FormBuilder::create(StateForm::class, [
-            'url' => route('state.update',['state' => $state->id]),
+            'url' => route('admin.state.update',['state' => $state->id]),
             'method' => 'PUT',
             'model' => $state
         ]);
-        return view('state.edit', compact('form'));
+        return view('admin.state.edit', compact('form'));
     }
 
     public function update(Request $request, $id)
@@ -109,7 +109,7 @@ class StateController extends Controller
 
         $request->session()->flash('message', 'Cidade atualizada com sucesso.');
 
-        return redirect()->route('state.index');
+        return redirect()->route('admin.state.index');
     }
 
     public function destroy(Request $request, $id)
@@ -118,7 +118,7 @@ class StateController extends Controller
 
         $request->session()->flash('message', 'Cidade excluida com sucesso.');
 
-        return redirect()->route('state.index');
+        return redirect()->route('admin.state.index');
     }
 
 }
