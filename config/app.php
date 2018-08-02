@@ -172,6 +172,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        \Dingo\Api\Provider\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -240,6 +242,8 @@ return [
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'ApiRoute' => \Dingo\Api\Facade\Route::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
     ],
 
 ];

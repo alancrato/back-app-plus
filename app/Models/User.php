@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Notifications\DefaultResetPasswordNotification;
+use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements TableInterface, JWTSubject
 {
     use Notifiable;
 
@@ -42,5 +44,60 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new DefaultResetPasswordNotification($token));
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'email' => $this->email,
+            ]
+        ];
+    }
+
+    /**
+     * A list of headers to be used when a table is displayed
+     *
+     * @return array
+     */
+    public function getTableHeaders()
+    {
+        return [ '#', 'Nome', 'E-mail' ];
+    }
+
+    /**
+     * Get the value for a given header. Note that this will be the value
+     * passed to any callback functions that are being used.
+     *
+     * @param string $header
+     * @return mixed
+     */
+    public function getValueForHeader($header)
+    {
+        switch ($header){
+            case '#':
+                return $this->id;
+            case 'Nome':
+                return $this->name;
+            case 'E-mail':
+                return $this->email;
+        }
     }
 }

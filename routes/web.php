@@ -72,3 +72,12 @@ Route::group([
         });
 
 });
+
+Route::group([
+    'middleware' => 'cors',
+], function (){
+    Route::get('/data/categories', 'Data\CategoryController@index');
+    Route::get('/data/states', 'Data\StateController@states');
+    Route::get('/data/state', 'Data\StateController@index');
+    Route::get('/data/promotions', 'Data\PromotionController@index');
+});
