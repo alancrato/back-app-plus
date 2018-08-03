@@ -32,13 +32,16 @@
             'expires' => 1
         ])->name('.refresh_token');
 
+        ApiRoute::post('register', 'RegisterUsersController@store');
+
         ApiRoute::group([
             'middleware' => ['api.throttle', 'api.auth'],
             'limit' => 100,
             'expires' => 3
         ], function (){
+            ApiRoute::patch('/user/settings','UsersController@updateSettings');
             ApiRoute::post('/logout', 'AuthController@logout');
-            ApiRoute::get('/test', function (){
+            ApiRoute::get('/user', function (){
                 return "Ops. The authenticated!";
             });
         });
