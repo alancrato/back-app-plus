@@ -43,6 +43,9 @@
                         <a href="javascript:void(null)">Relatórios</a>
                     </li>
                     <li>
+                        <a href="{{url('/admin/users')}}">Usuários</a>
+                    </li>
+                    <li>
                         <a href="{{url('/admin/states')}}">Estações(Cidades)</a>
                     </li>
                     <li>
