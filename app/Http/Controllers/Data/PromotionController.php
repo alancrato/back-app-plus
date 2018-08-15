@@ -24,7 +24,7 @@ class PromotionController extends Controller
     public function index()
     {
         $data = $this->repository->findWhere([
-           'status' => true
+           'status' => 'active'
         ]);
         return $data;
     }
